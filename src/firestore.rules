@@ -1,0 +1,187 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Secures the user profile document. Only the user can read or write their own profile.
+     * @path /users/{userId}
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow create: if isSignedIn() && isNewOwner(userId);
+      allow update: if isExistingOwner(userId) && isOwnerIdImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures character documents. Only the owning user can create, read, update, or delete characters under their user ID.
+     * @path /users/{userId}/characters/{characterId}
+     */
+    match /users/{userId}/characters/{characterId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId) && isCharacterOwnerValidOnCreate(userId);
+      allow update: if isExistingOwner(userId) && isCharacterOwnerImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures inventory item documents. Only the owning user can manage inventory items for their characters.
+     * @path /users/{userId}/characters/{characterId}/inventory/{inventoryItemId}
+     */
+    match /users/{userId}/characters/{characterId}/inventory/{inventoryItemId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures campaign documents. Only the owning user can create, read, update, or delete campaigns under their user ID.
+     * @path /users/{userId}/campaigns/{campaignId}
+     */
+    match /users/{userId}/campaigns/{campaignId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId) && isCampaignOwnerValidOnCreate(userId);
+      allow update: if isExistingOwner(userId) && isCampaignOwnerImmutable();
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures combat log documents. Only the owning user can manage combat logs for their characters.
+     * @path /users/{userId}/characters/{characterId}/combatLogs/{combatLogId}
+     */
+    match /users/{userId}/characters/{characterId}/combatLogs/{combatLogId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Secures task documents. Read access is public, but write access requires administrative privileges.
+     * @path /tasks/{taskId}
+     */
+    match /tasks/{taskId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    /**
+     * @description Secures photoURL documents. Users can list their own photoURLs, and admins can list any.
+     * Users can create, update, and delete their own entries. Admins have full access.
+     * @path /photoURLs/{photoURLId}
+     */
+    match /photoURLs/{photoURLId} {
+      allow get: if isSignedIn();
+      allow list: if (request.query.keys().hasOnly(['userId', 'category', 'limit']) && request.query.userId == request.auth.uid) || isAdmin();
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow delete: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    /**
+     * @description Secures super admin art uploads. Only admins can access this collection.
+     * @path /upload-super-admin-art/{artId}
+     */
+    match /upload-super-admin-art/{artId} {
+      allow read, write: if isAdmin();
+    }
+  }
+
+  /**
+   * @description Checks if the user is signed in.
+   * @return {boolean} True if the user is signed in, false otherwise.
+   */
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  /**
+   * @description Checks if the user ID matches the authenticated user's ID, indicating ownership.
+   * @param {string} userId The user ID to check against.
+   * @return {boolean} True if the user ID matches the authenticated user's ID, false otherwise.
+   */
+  function isOwner(userId) {
+    return request.auth.uid == userId;
+  }
+
+  /**
+   * @description Checks if the user is the owner and the document already exists.
+   * @param {string} userId The user ID to check against.
+   * @return {boolean} True if the user is the owner and the document exists.
+   */
+  function isExistingOwner(userId) {
+    return isOwner(userId) && exists(/databases/$(database)/documents/users/$(userId));
+  }
+
+  /**
+   * @description Checks if the user is the owner of a new document being created.
+   * @param {string} userId The user ID from the document path.
+   * @return {boolean} True if the user is the owner, the user is signed in, and the ID field matches.
+   */
+  function isNewOwner(userId) {
+    return isSignedIn() && isOwner(userId) && request.resource.data.id == userId;
+  }
+
+  /**
+   * @description Validates that the userId field in the incoming Character matches the userId in the path.
+   * @param {string} userId The userId from the document path.
+   * @return {boolean} True if the userId field in the data matches the userId in the path.
+   */
+  function isCharacterOwnerValidOnCreate(userId) {
+    return request.resource.data.userId == userId;
+  }
+
+    /**
+   * @description Enforces that the userId field in the Character document cannot be changed after creation.
+   * @return {boolean} True if the userId field in the data is the same as the existing userId.
+   */
+  function isCharacterOwnerImmutable() {
+    return request.resource.data.userId == resource.data.userId;
+  }
+
+    /**
+   * @description Validates that the userId field in the incoming Campaign matches the userId in the path.
+   * @param {string} userId The userId from the document path.
+   * @return {boolean} True if the userId field in the data matches the userId in the path.
+   */
+  function isCampaignOwnerValidOnCreate(userId) {
+    return request.resource.data.userId == userId;
+  }
+
+    /**
+   * @description Enforces that the userId field in the Campaign document cannot be changed after creation.
+   * @return {boolean} True if the userId field in the data is the same as the existing userId.
+   */
+  function isCampaignOwnerImmutable() {
+    return request.resource.data.userId == resource.data.userId;
+  }
+
+  /**
+   * @description Enforces that the id field in the User document cannot be changed after creation.
+   * @return {boolean} True if the id field in the data is the same as the existing id.
+   */
+    function isOwnerIdImmutable() {
+    return request.resource.data.id == resource.data.id;
+  }
+
+  /**
+   * @description Checks if the user's email is in the hardcoded list of admins.
+   * @return {boolean} True if the user is an admin, false otherwise.
+   */
+  function isAdmin() {
+    return request.auth != null && request.auth.token.email in {
+      'bmccarrrick83@gmail.com': 1,
+      'gmhelperviz@gmail.com': 1
+    };
+  }
+}

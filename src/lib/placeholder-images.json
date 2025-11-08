@@ -1,0 +1,52 @@
+{
+  "placeholderImages": [
+    {
+      "id": "dashboard-hero",
+      "description": "A fantasy landscape with a castle in the distance.",
+      "imageUrl": "https://images.unsplash.com/photo-1717564954563-e0263d335695?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmYW50YXN5JTIwbGFuZHNjYXBlfGVufDB8fHx8MTc2MTQ4MDMyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy landscape"
+    },
+    {
+      "id": "char-portrait-1",
+      "description": "Portrait of a rugged male warrior.",
+      "imageUrl": "https://images.unsplash.com/photo-1618425978252-43dae17654c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWxlJTIwd2FycmlvcnxlbnwwfHx8fDE3NjE1ODQwOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male warrior"
+    },
+    {
+      "id": "char-portrait-2",
+      "description": "Portrait of a mysterious female rogue.",
+      "imageUrl": "https://images.unsplash.com/photo-1613246135187-261dddfdd50b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxmZW1hbGUlMjByb2d1ZXxlbnwwfHx8fDE3NjE1ODQwOTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female rogue"
+    },
+    {
+      "id": "char-portrait-3",
+      "description": "Portrait of an old male wizard.",
+      "imageUrl": "https://images.unsplash.com/photo-1626934459213-7109dd5058f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYWxlJTIwd2l6YXJkfGVufDB8fHx8MTc2MTU4NDEwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male wizard"
+    },
+    {
+      "id": "char-portrait-4",
+      "description": "Portrait of an elven archer.",
+      "imageUrl": "https://images.unsplash.com/photo-1717624355228-c32057975a8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZWx2ZW4lMjBhcmNoZXJ8ZW58MHx8fHwxNzYxNTg0MDk5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "elven archer"
+    },
+    {
+      "id": "char-portrait-5",
+      "description": "Portrait of a dwarven cleric.",
+      "imageUrl": "https://images.unsplash.com/photo-1583502070509-cd721e268b0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkd2FydmVuJTIwY2xlcmljfGVufDB8fHx8MTc2MTU4NDA5OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dwarven cleric"
+    },
+    {
+      "id": "vehicle-phase-craft",
+      "description": "A sleek, futuristic phase-craft with leg-like appendages, suggesting interdimensional travel.",
+      "imageUrl": "https://images.unsplash.com/photo-1698664168695-2a26a4ce558a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzY2klMjBmaSUyMHZlaGljbGUlMjBpbnNlY3RvaWR8ZW58MHx8fHwxNzYxODEwMjQzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sci-fi insectoid"
+    },
+    {
+      "id": "world-map",
+      "description": "A detailed fantasy world map.",
+      "imageUrl": "https://images.unsplash.com/photo-1746048059073-f0234df06f26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmYW50YXN5JTIwbWFwfGVufDB8fHx8MTc2MTk4MzQ0MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fantasy map"
+    }
+  ]
+}

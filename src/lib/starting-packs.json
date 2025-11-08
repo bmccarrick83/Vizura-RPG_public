@@ -1,0 +1,155 @@
+
+{
+    "adventurerPack": [
+        "bedroll",
+        "rations",
+        "waterskin"
+    ],
+    "classPacks": {
+        "Soldier": [
+            "crossbow",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "dagger",
+            "rations",
+            "flint-and-steel",
+            "torch",
+            "notebook",
+            "fountain-pen"
+        ],
+        "Engineer": [
+            "crossbow",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt"
+        ],
+        "Pilot": [
+            "crossbow",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt"
+        ],
+        "Phase Craft Technician": [
+            "crossbow",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt",
+            "crossbow-bolt"
+        ],
+        "Monk": [],
+        "Noble": [
+            "longsword",
+            "rations",
+            "flint-and-steel",
+            "torch",
+            "notebook",
+            "fountain-pen"
+        ],
+        "Thief": [
+            "dagger",
+            "dagger",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ],
+        "Healer": [
+            "dagger",
+            "spellbook",
+            "healing-crystals",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ],
+        "Druid": [
+            "wand",
+            "quarterstaff",
+            "spellbook",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ],
+        "Warlock": [
+            "wand",
+            "quarterstaff",
+            "spellbook",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ],
+        "Magus Acolyte": [
+            "wand",
+            "quarterstaff",
+            "spellbook",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ],
+        "Monster Hunter": [
+            "dagger",
+            "flaying-knife",
+            "butcher-knife",
+            "ball-peen-hammer",
+            "surgical-tweezers",
+            "pick-set",
+            "surgical-extractors",
+            "scalpels",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ],
+        "default": [
+            "dagger",
+            "rations",
+            "flint-and-steel",
+            "torch"
+        ]
+    }
+}

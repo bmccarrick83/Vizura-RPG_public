@@ -1,0 +1,461 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Vizura RPG Companion application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User's display name."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "URL of the user's profile photo.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "displayName"
+      ]
+    },
+    "Character": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Character",
+      "type": "object",
+      "description": "Represents an RPG character created by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the character entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Character)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Character's name."
+        },
+        "race": {
+          "type": "string",
+          "description": "Character's race."
+        },
+        "class": {
+          "type": "string",
+          "description": "Character's class."
+        },
+        "background": {
+          "type": "string",
+          "description": "Character's background."
+        },
+        "stats": {
+          "type": "string",
+          "description": "Character's stats, stored as JSON."
+        },
+        "portraitURL": {
+          "type": "string",
+          "description": "URL of the character's portrait image.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "name",
+        "race",
+        "class"
+      ]
+    },
+    "InventoryItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "InventoryItem",
+      "type": "object",
+      "description": "Represents an item in a character's inventory.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the inventory item."
+        },
+        "characterId": {
+          "type": "string",
+          "description": "Reference to Character. (Relationship: Character 1:N InventoryItem)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the item."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the item."
+        },
+        "weight": {
+          "type": "number",
+          "description": "Weight of the item."
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the item."
+        },
+        "slot": {
+          "type": "string",
+          "description": "The inventory slot the item is equipped in or 'carried' if unequipped."
+        }
+      },
+      "required": [
+        "id",
+        "characterId",
+        "name",
+        "weight",
+        "quantity"
+      ]
+    },
+    "Campaign": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Campaign",
+      "type": "object",
+      "description": "Represents a campaign or adventure.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the campaign."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Campaign)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the campaign."
+        },
+        "sessionDate": {
+          "type": "string",
+          "description": "Date of the next campaign session.",
+          "format": "date-time"
+        },
+        "soloMode": {
+          "type": "boolean",
+          "description": "Indicates if the campaign is in solo mode."
+        },
+        "inGameTime": {
+          "type": "string",
+          "description": "Current in-game time, stored as JSON."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "name"
+      ]
+    },
+    "CombatLog": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CombatLog",
+      "type": "object",
+      "description": "Represents a log of combat events.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the combat log."
+        },
+        "characterId": {
+          "type": "string",
+          "description": "Reference to Character. (Relationship: Character 1:N CombatLog)"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the combat event.",
+          "format": "date-time"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the combat event."
+        },
+        "details": {
+          "type": "string",
+          "description": "Details of the combat event stored as JSON."
+        }
+      },
+      "required": [
+        "id",
+        "characterId",
+        "timestamp",
+        "description"
+      ]
+    },
+    "Task": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Task",
+      "type": "object",
+      "description": "Represents a task in the admin project board.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the task."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the task."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the task."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the task (To Do, In Progress, Done)."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "status"
+      ]
+    },
+    "PhotoURL": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PhotoURL",
+      "type": "object",
+      "description": "Represents a URL for a photo with associated metadata.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the photo URL."
+        },
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who uploaded the photo."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the photo."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the photo."
+        },
+        "imageHint": {
+          "type": "string",
+          "description": "Keywords for AI image search."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "url"
+      ]
+    },
+    "SuperAdminArt": {
+      "title": "Super Admin Art",
+      "type": "object",
+      "description": "Represents an art asset uploaded by a super admin.",
+      "properties": {
+        "imageURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the uploaded art."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the art was uploaded."
+        },
+        "user": {
+          "type": "object",
+          "description": "Information about the user who uploaded the art.",
+          "properties": {
+            "displayName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "photoURL": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles. User ID is used as the document ID.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/characters/{characterId}",
+        "definition": {
+          "entityName": "Character",
+          "schema": {
+            "$ref": "#/backend/entities/Character"
+          },
+          "description": "Stores characters created by a user. Characters are owned by the user, providing path-based authorization.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "characterId",
+              "description": "The unique identifier for the character."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/characters/{characterId}/inventory/{inventoryItemId}",
+        "definition": {
+          "entityName": "InventoryItem",
+          "schema": {
+            "$ref": "#/backend/entities/InventoryItem"
+          },
+          "description": "Stores inventory items for a character. Inventory items are owned by the character, providing path-based authorization.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "characterId",
+              "description": "The unique identifier for the character."
+            },
+            {
+              "name": "inventoryItemId",
+              "description": "The unique identifier for the inventory item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/campaigns/{campaignId}",
+        "definition": {
+          "entityName": "Campaign",
+          "schema": {
+            "$ref": "#/backend/entities/Campaign"
+          },
+          "description": "Stores campaigns created by a user. Campaigns are owned by the user, providing path-based authorization.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "campaignId",
+              "description": "The unique identifier for the campaign."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/characters/{characterId}/combatLogs/{combatLogId}",
+        "definition": {
+          "entityName": "CombatLog",
+          "schema": {
+            "$ref": "#/backend/entities/CombatLog"
+          },
+          "description": "Stores combat logs for a character. Combat logs are owned by the character, providing path-based authorization.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "characterId",
+              "description": "The unique identifier for the character."
+            },
+            {
+              "name": "combatLogId",
+              "description": "The unique identifier for the combat log."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/tasks/{taskId}",
+        "definition": {
+          "entityName": "Task",
+          "schema": {
+            "$ref": "#/backend/entities/Task"
+          },
+          "description": "Stores admin tasks for the project board. Admin access will be required to create, modify, or delete tasks.",
+          "params": [
+            {
+              "name": "taskId",
+              "description": "The unique identifier for the task."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/photoURLs/{photoURLId}",
+        "definition": {
+          "entityName": "PhotoURL",
+          "schema": {
+            "$ref": "#/backend/entities/PhotoURL"
+          },
+          "description": "Stores photo URLs and related metadata for use across the application.",
+          "params": [
+            {
+              "name": "photoURLId",
+              "description": "The unique identifier for the photo URL record."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/upload-super-admin-art/{artId}",
+        "definition": {
+          "entityName": "SuperAdminArt",
+          "schema": {
+            "$ref": "#/backend/entities/SuperAdminArt"
+          },
+          "description": "Stores art assets uploaded by super admins. Access is restricted to admins only.",
+          "params": [
+            {
+              "name": "artId",
+              "description": "The unique identifier for the art asset."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to support the Vizura RPG Companion application, focusing on user-owned data with strong ownership-based security. Each user has their own collection of characters, campaigns, and related data. This structure ensures that data is isolated and access is controlled at the user level, simplifying security rules. The admin tasks and photo URLs are stored in separate collections without ownership, which means access must be controlled differently. This structure allows for efficient querying and management of user data. The structure is designed to avoid `get()` calls in the security rules, which increases performance and maintainability.\n\n**Authorization Independence:** The structure achieves authorization independence by using path-based ownership. For example, characters are stored under `/users/{userId}/characters/{characterId}`, meaning that access to characters is implicitly tied to the user ID in the path. This eliminates the need to fetch parent document data to determine authorization, making rules more straightforward and efficient. All subcollections follow this pattern.\n\n**QAPs (Rules are not Filters):**  The structure facilitates secure `list` operations by ensuring that each collection contains documents with homogeneous security postures. For instance, all documents in `/users/{userId}/characters` are owned by the specified user. This enables rules to permit listing based on the path, without needing to inspect document content to determine access. The segregation between user-owned data and admin tasks further supports this principle."
+  }
+}
+
+    
