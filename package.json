@@ -75,6 +75,9 @@
     "eslint": "latest",
     "eslint-config-next": "latest"
   },
+  "scripts": {
+    "build": "next build"
+  },
   "resolutions": {
     "jackspeak": "2.1.1"
   }
